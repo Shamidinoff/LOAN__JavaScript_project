@@ -22,10 +22,10 @@ class VideoPlayer {
   //   play() {}
 
   createPlayer(url) {
-    this.player = new YT.Player("player", {
-      height: "360",
-      width: "640",
-      videoId: "M7lc1UVf-VE"
+    this.player = new YT.Player("frame", {
+      height: "100%",
+      width: "100%",
+      videoId: `${url}`
     });
   }
   init() {
@@ -35,7 +35,8 @@ class VideoPlayer {
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     this.btns.forEach(btn => {
       btn.addEventListener("click", () => {
-        console.log("Hello");
+        const path = btn.getAttribute("data-url");
+        this.createPlayer(path);
       });
     });
   }
@@ -182,7 +183,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const slider = new _modules_slider__WEBPACK_IMPORTED_MODULE_0__["default"](".page", ".next");
   slider.render();
   const player = new _modules_playVideo__WEBPACK_IMPORTED_MODULE_1__["default"](".showup .play", ".overlay");
-  player.play();
+  player.init();
 });
 }();
 /******/ })()

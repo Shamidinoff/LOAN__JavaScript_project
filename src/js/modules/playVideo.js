@@ -8,10 +8,10 @@ export default class VideoPlayer {
   //   play() {}
 
   createPlayer(url) {
-    this.player = new YT.Player("player", {
-      height: "360",
-      width: "640",
-      videoId: "M7lc1UVf-VE",
+    this.player = new YT.Player("frame", {
+      height: "100%",
+      width: "100%",
+      videoId: `${url}`,
     });
   }
 
@@ -24,7 +24,9 @@ export default class VideoPlayer {
 
     this.btns.forEach((btn) => {
       btn.addEventListener("click", () => {
-        console.log("Hello");
+        const path = btn.getAttribute("data-url");
+
+        this.createPlayer(path);
       });
     });
   }
