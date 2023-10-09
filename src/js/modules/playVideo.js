@@ -5,6 +5,23 @@ export default class VideoPlayer {
     this.close = this.overlay.querySelector(".close");
   }
 
+  bindTriggers() {
+    this.btns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const path = btn.getAttribute("data-url");
+
+        this.createPlayer(path);
+      });
+    });
+  }
+
+  bindCloseBtn() {
+    this.close.addEventListener("click", () => {
+      this.overlay.style.display = "none";
+      this.player.stopVideo();
+    });
+  }
+
   //   play() {}
 
   createPlayer(url) {
@@ -13,6 +30,8 @@ export default class VideoPlayer {
       width: "100%",
       videoId: `${url}`,
     });
+
+    this.overlay.style.display = "flex";
   }
 
   init() {
@@ -22,12 +41,7 @@ export default class VideoPlayer {
     const firstScriptTag = document.getElementsByTagName("script")[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    this.btns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const path = btn.getAttribute("data-url");
-
-        this.createPlayer(path);
-      });
-    });
+    this.bindTriggers();
+    this.bindCloseBtn();
   }
 }
