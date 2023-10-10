@@ -1,4 +1,4 @@
-import Slider from "./modules/slider";
+import Slider from "./modules/slider/slider";
 import VideoPlayer from "./modules/playVideo";
 
 window.addEventListener("DOMContentLoaded", () => {
