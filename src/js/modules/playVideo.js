@@ -26,7 +26,7 @@ export default class VideoPlayer {
     });
   }
 
-  //   play() {}
+  //
 
   createPlayer(url) {
     this.player = new YT.Player("frame", {
