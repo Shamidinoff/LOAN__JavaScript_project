@@ -124,16 +124,6 @@ class MainSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
   }
 }
 
-//
-
-// this.slides.forEach((slide) => {
-//   slide.style.display = "none";
-// });
-
-// Array.from(this.slides).forEach((slide) => {
-//   slide.style.display = "none";
-// });
-
 /***/ }),
 
 /***/ "./src/js/modules/slider/slider-mini.js":
