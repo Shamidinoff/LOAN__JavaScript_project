@@ -62,5 +62,3 @@ export default class MainSlider extends Slider {
     this.showSlides(this.slideIndex);
   }
 }
-
-//
