@@ -172,7 +172,7 @@ class Slider {
       next = null,
       prev = null
     } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    this.page = document.querySelector(container);
+    this.container = document.querySelector(container);
     this.slides = this.container.children;
     this.btns = document.querySelectorAll(btns);
     this.prev = document.querySelector(prev);
@@ -259,11 +259,23 @@ window.addEventListener("DOMContentLoaded", () => {
   });
   slider.render();
   const showUpSlider = new _modules_slider_slider_mini__WEBPACK_IMPORTED_MODULE_2__["default"]({
-    contaner: ".showup__content-slider",
+    container: ".showup__content-slider",
     prev: ".showup__prev",
     next: ".showup__next"
   });
   showUpSlider.init();
+  const modulesSlider = new _modules_slider_slider_mini__WEBPACK_IMPORTED_MODULE_2__["default"]({
+    container: ".modules__content-slider",
+    prev: ".modules__info-btns .slick-prev",
+    next: ".modules__info-btns .slick-next"
+  });
+  modulesSlider.init();
+  const feedSlider = new _modules_slider_slider_mini__WEBPACK_IMPORTED_MODULE_2__["default"]({
+    container: ".feed__slider",
+    prev: ".feed__slider .slick-prev",
+    next: ".feed__slider .slick-next"
+  });
+  feedSlider.init();
   const player = new _modules_playVideo__WEBPACK_IMPORTED_MODULE_1__["default"](".showup .play", ".overlay");
   player.init();
 });

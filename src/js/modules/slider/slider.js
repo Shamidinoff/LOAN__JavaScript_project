@@ -5,7 +5,7 @@ export default class Slider {
     next = null,
     prev = null,
   } = {}) {
-    this.page = document.querySelector(container);
+    this.container = document.querySelector(container);
     this.slides = this.container.children;
     this.btns = document.querySelectorAll(btns);
     this.prev = document.querySelector(prev);
