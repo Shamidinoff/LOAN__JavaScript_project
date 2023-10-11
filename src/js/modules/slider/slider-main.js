@@ -17,7 +17,7 @@ export default class MainSlider extends Slider {
     try {
       this.hanson.style.opacity = "0";
 
-      if (n === 3) {
+      if (n == 3) {
         this.hanson.classList.add("animated");
         setTimeout(() => {
           this.hanson.style.opacity = "1";
@@ -62,3 +62,13 @@ export default class MainSlider extends Slider {
     this.showSlides(this.slideIndex);
   }
 }
+
+//
+
+// this.slides.forEach((slide) => {
+//   slide.style.display = "none";
+// });
+
+// Array.from(this.slides).forEach((slide) => {
+//   slide.style.display = "none";
+// });
