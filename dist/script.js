@@ -124,6 +124,8 @@ class MainSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
   }
 }
 
+//
+
 /***/ }),
 
 /***/ "./src/js/modules/slider/slider-mini.js":
