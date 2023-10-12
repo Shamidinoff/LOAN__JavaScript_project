@@ -31,7 +31,13 @@ export default class MainSlider extends Slider {
     // this.slides.forEach((slide) => {
     //   slide.style.display = "none";
     // });
-    Array.from(this.slides).forEach((slide) => {
+    /* Array.from(this.slides).forEach((slide) => {
+      slide.style.display = "none";
+    }); */
+    // Преобразуем коллекцию this.slides в массив с помощью spread operator
+    this.slides = [...this.slides];
+
+    this.slides.forEach((slide) => {
       slide.style.display = "none";
     });
 

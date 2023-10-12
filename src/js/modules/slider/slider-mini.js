@@ -6,6 +6,8 @@ export default class MiniSlider extends Slider {
   }
 
   decorizeSlides() {
+    this.slides = Array.from(this.slides); // Преобразование в массив
+
     this.slides.forEach((slide) => {
       slide.classList.remove(this.activeClass);
       if (this.animate) {

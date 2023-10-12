@@ -98,7 +98,12 @@ class MainSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
     // this.slides.forEach((slide) => {
     //   slide.style.display = "none";
     // });
-    Array.from(this.slides).forEach(slide => {
+    /* Array.from(this.slides).forEach((slide) => {
+      slide.style.display = "none";
+    }); */
+    // Преобразуем коллекцию this.slides в массив с помощью spread operator
+    this.slides = [...this.slides];
+    this.slides.forEach(slide => {
       slide.style.display = "none";
     });
     this.slides[this.slideIndex - 1].style.display = "block";
@@ -143,6 +148,8 @@ class MiniSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
     super(container, next, prev, activeClass, animate, autoplay);
   }
   decorizeSlides() {
+    this.slides = Array.from(this.slides); // Преобразование в массив
+
     this.slides.forEach(slide => {
       slide.classList.remove(this.activeClass);
       if (this.animate) {
