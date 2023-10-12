@@ -133,6 +133,7 @@ class Form {
   }
   init() {
     this.checkMailInputs();
+    this.initMask();
     this.forms.forEach(item => {
       item.addEventListener("submit", e => {
         e.preventDefault();
