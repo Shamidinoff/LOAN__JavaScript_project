@@ -301,7 +301,8 @@ class MainSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
         });
       });
       document.querySelectorAll(".nextmodule").forEach(item => {
-        item.addEventListener("click", () => {
+        item.addEventListener("click", e => {
+          e.stopPropagation();
           this.plusSlides(1);
         });
       });

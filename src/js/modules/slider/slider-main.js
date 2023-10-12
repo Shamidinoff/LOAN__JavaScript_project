@@ -78,7 +78,8 @@ export default class MainSlider extends Slider {
       });
 
       document.querySelectorAll(".nextmodule").forEach((item) => {
-        item.addEventListener("click", () => {
+        item.addEventListener("click", (e) => {
+          e.stopPropagation();
           this.plusSlides(1);
         });
       });
