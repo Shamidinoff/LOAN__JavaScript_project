@@ -72,7 +72,7 @@ export default class MainSlider extends Slider {
       this.showSlides(this.slideIndex);
 
       document.querySelectorAll(".prevmodule").forEach((item) => {
-        item.addEventListener("click", () => {
+        item.addEventListener("click", (e) => {
           this.plusSlides(-1);
         });
       });
