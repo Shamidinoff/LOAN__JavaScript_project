@@ -49,6 +49,59 @@ class Difference {
 
 /***/ }),
 
+/***/ "./src/js/modules/forms.js":
+/*!*********************************!*\
+  !*** ./src/js/modules/forms.js ***!
+  \*********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ Form; }
+/* harmony export */ });
+class Form {
+  constructor(forms) {
+    this.forms = document.querySelector(forms);
+    this.message = {
+      loading: "Загрузка...",
+      success: "Спасибо! Скоро мы с вами свяжемся!",
+      failure: "Что-то пошло не так..."
+    };
+    this.path = "assets/question.php";
+  }
+  async postData(url, data) {
+    let res = await fetch(url, {
+      method: "POST",
+      body: data
+    });
+    return await res.text();
+  }
+  init() {
+    this.forms.forEach(item => {
+      item.addEventListener("submit", e => {
+        e.preventDefault();
+        let statusMessage = document.createElement("div");
+        statusMessage.style.cssText = `
+                margin-top: 15px;
+                font-size: 18px;
+                color: grey;
+            `;
+        item.parentNode.appendChild(statusMessage);
+        statusMessage.textContent = this.message.loading;
+        const formData = new FormData(item);
+        this.postData(this.path, formData).then(res => {
+          console.log(res);
+          statusMessage.textContent = this.message.success;
+        }).catch(() => {
+          statusMessage.textContent = this.message.failure;
+        });
+      });
+    });
+  }
+}
+
+/***/ }),
+
 /***/ "./src/js/modules/playVideo.js":
 /*!*************************************!*\
   !*** ./src/js/modules/playVideo.js ***!
@@ -359,6 +412,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_slider_slider_mini__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/slider/slider-mini */ "./src/js/modules/slider/slider-mini.js");
 /* harmony import */ var _modules_playVideo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/playVideo */ "./src/js/modules/playVideo.js");
 /* harmony import */ var _modules_difference__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/difference */ "./src/js/modules/difference.js");
+/* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/forms */ "./src/js/modules/forms.js");
+
 
 
 
@@ -396,6 +451,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const player = new _modules_playVideo__WEBPACK_IMPORTED_MODULE_2__["default"](".showup .play", ".overlay");
   player.init();
   new _modules_difference__WEBPACK_IMPORTED_MODULE_3__["default"](".officerold", ".officernew", ".officer_card-item").init();
+  new _modules_forms__WEBPACK_IMPORTED_MODULE_4__["default"](".form").init();
 });
 }();
 /******/ })()
