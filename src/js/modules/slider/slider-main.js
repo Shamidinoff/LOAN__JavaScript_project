@@ -80,6 +80,7 @@ export default class MainSlider extends Slider {
       document.querySelectorAll(".nextmodule").forEach((item) => {
         item.addEventListener("click", (e) => {
           e.stopPropagation();
+          e.preventDefault();
           this.plusSlides(1);
         });
       });
