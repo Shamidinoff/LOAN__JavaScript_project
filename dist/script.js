@@ -279,21 +279,23 @@ class MainSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
   plusSlides(n) {
     this.showSlides(this.slideIndex += n);
   }
+  bindTriggers() {
+    this.btns.forEach(item => {
+      item.addEventListener("click", () => {
+        this.plusSlides(1);
+      });
+      item.parentNode.previousElementSibling.addEventListener("click", e => {
+        e.preventDefault();
+        this.slideIndex = 1;
+        this.showSlides(this.slideIndex);
+      });
+    });
+  }
   render() {
     if (this.container) {
       try {
         this.hanson = document.querySelector(".hanson");
       } catch (e) {}
-      this.btns.forEach(item => {
-        item.addEventListener("click", () => {
-          this.plusSlides(1);
-        });
-        item.parentNode.previousElementSibling.addEventListener("click", e => {
-          e.preventDefault();
-          this.slideIndex = 1;
-          this.showSlides(this.slideIndex);
-        });
-      });
       this.showSlides(this.slideIndex);
       document.querySelectorAll(".prevmodule").forEach(item => {
         item.addEventListener("click", e => {
