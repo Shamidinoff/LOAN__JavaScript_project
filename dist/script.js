@@ -14,12 +14,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 class Difference {
   constructor(oldOfficer, newOfficer, items) {
-    this.oldOfficer = document.querySelector(oldOfficer);
-    this.newOfficer = document.querySelector(newOfficer);
-    this.oldItems = this.oldOfficer.querySelectorAll(items);
-    this.newItems = this.newOfficer.querySelectorAll(items);
-    this.oldCounter = 0;
-    this.newCounter = 0;
+    try {
+      this.oldOfficer = document.querySelector(oldOfficer);
+      this.newOfficer = document.querySelector(newOfficer);
+      this.oldItems = this.oldOfficer.querySelectorAll(items);
+      this.newItems = this.newOfficer.querySelectorAll(items);
+      this.oldCounter = 0;
+      this.newCounter = 0;
+    } catch (e) {}
   }
   bindTriggers(container, items, counter) {
     container.querySelector(".plus").addEventListener("click", () => {
@@ -40,10 +42,12 @@ class Difference {
     });
   }
   init() {
-    this.hideItems(this.oldItems);
-    this.hideItems(this.newItems);
-    this.bindTriggers(this.oldOfficer, this.oldItems, this.oldCounter);
-    this.bindTriggers(this.newOfficer, this.newItems, this.newCounter);
+    try {
+      this.hideItems(this.oldItems);
+      this.hideItems(this.newItems);
+      this.bindTriggers(this.oldOfficer, this.oldItems, this.oldCounter);
+      this.bindTriggers(this.newOfficer, this.newItems, this.newCounter);
+    } catch (e) {}
   }
 }
 
@@ -61,7 +65,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 class Form {
   constructor(forms) {
-    this.forms = document.querySelector(forms);
+    this.forms = document.querySelectorAll(forms);
     this.inputs = document.querySelectorAll("input");
     this.message = {
       loading: "Загрузка...",
@@ -139,10 +143,10 @@ class Form {
         e.preventDefault();
         let statusMessage = document.createElement("div");
         statusMessage.style.cssText = `
-                margin-top: 15px;
-                font-size: 18px;
-                color: grey;
-            `;
+                    margin-top: 15px;
+                    font-size: 18px;
+                    color: grey;
+                `;
         item.parentNode.appendChild(statusMessage);
         statusMessage.textContent = this.message.loading;
         const formData = new FormData(item);
@@ -257,17 +261,19 @@ class MainSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
       }
     } catch (e) {}
 
-    // this.slides.forEach((slide) => {
-    //   slide.style.display = "none";
-    // });
     /* Array.from(this.slides).forEach((slide) => {
       slide.style.display = "none";
     }); */
+
     // Преобразуем коллекцию this.slides в массив с помощью spread operator
-    this.slides = [...this.slides];
+    this.slides = [...this.slides]; // remove
+
     this.slides.forEach(slide => {
       slide.style.display = "none";
     });
+
+    //
+
     this.slides[this.slideIndex - 1].style.display = "block";
   }
   plusSlides(n) {
@@ -275,19 +281,21 @@ class MainSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
   }
   render() {
     try {
-      this.hanson = document.querySelector(".hanson");
+      try {
+        this.hanson = document.querySelector(".hanson");
+      } catch (e) {}
+      this.btns.forEach(item => {
+        item.addEventListener("click", () => {
+          this.plusSlides(1);
+        });
+        item.parentNode.previousElementSibling.addEventListener("click", e => {
+          e.preventDefault();
+          this.slideIndex = 1;
+          this.showSlides(this.slideIndex);
+        });
+      });
+      this.showSlides(this.slideIndex);
     } catch (e) {}
-    this.btns.forEach(item => {
-      item.addEventListener("click", () => {
-        this.plusSlides(1);
-      });
-      item.parentNode.previousElementSibling.addEventListener("click", e => {
-        e.preventDefault();
-        this.slideIndex = 1;
-        this.showSlides(this.slideIndex);
-      });
-    });
-    this.showSlides(this.slideIndex);
   }
 }
 
@@ -356,17 +364,19 @@ class MiniSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
     });
   }
   init() {
-    this.container.style.cssText = `
+    try {
+      this.container.style.cssText = `
             display: flex;
             flex-wrap: wrap;
             overflow: hidden;
             align-items: flex-start;
         `;
-    this.bindTriggers();
-    this.decorizeSlides();
-    if (this.autoplay) {
-      setInterval(() => this.nextSlide(), 5000);
-    }
+      this.bindTriggers();
+      this.decorizeSlides();
+      if (this.autoplay) {
+        setInterval(() => this.nextSlide(), 5000);
+      }
+    } catch (e) {}
   }
 }
 
@@ -394,7 +404,9 @@ class Slider {
       autoplay
     } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     this.container = document.querySelector(container);
-    this.slides = this.container.children;
+    try {
+      this.slides = this.container.children;
+    } catch (e) {}
     this.btns = document.querySelectorAll(btns);
     this.prev = document.querySelector(prev);
     this.next = document.querySelector(next);
