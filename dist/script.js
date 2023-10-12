@@ -311,6 +311,7 @@ class MainSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
         this.hanson = document.querySelector(".hanson");
       } catch (e) {}
       this.showSlides(this.slideIndex);
+      this.bindTriggers();
     }
   }
 }
