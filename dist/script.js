@@ -297,6 +297,8 @@ class MainSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
       this.showSlides(this.slideIndex);
       document.querySelectorAll(".prevmodule").forEach(item => {
         item.addEventListener("click", e => {
+          e.stopPropagation();
+          e.preventDefault();
           this.plusSlides(-1);
         });
       });
