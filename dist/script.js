@@ -498,6 +498,11 @@ window.addEventListener("DOMContentLoaded", () => {
     container: ".page"
   });
   slider.render();
+  const moduleSlider = new _modules_slider_slider_main__WEBPACK_IMPORTED_MODULE_0__["default"]({
+    container: ".moduleapp",
+    btns: ".next"
+  });
+  moduleSlider.render();
   const showUpSlider = new _modules_slider_slider_mini__WEBPACK_IMPORTED_MODULE_1__["default"]({
     container: ".showup__content-slider",
     prev: ".showup__prev",
