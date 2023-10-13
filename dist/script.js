@@ -194,7 +194,7 @@ class VideoPlayer {
         }
       } catch (e) {}
       btn.addEventListener("click", () => {
-        if (btn.closest(".module__video-item").getAttribute("data-disabled") !== "true") {
+        if (!btn.closest(".module__video-item") || btn.closest(".module__video-item").getAttribute("data-disabled") !== "true") {
           this.activeBtn = btn;
           if (document.querySelector("iframe#frame")) {
             this.overlay.style.display = "flex";
@@ -275,13 +275,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": function() { return /* binding */ ShowInfo; }
 /* harmony export */ });
 class ShowInfo {
-  constructor(trigers) {
-    this.btns = document.querySelectorAll(trigers);
+  constructor(triggers) {
+    this.btns = document.querySelectorAll(triggers);
   }
   init() {
     this.btns.forEach(btn => {
       btn.addEventListener("click", () => {
-        btn.closest(".module__info-show").nextElementSibling.style.display = "block";
+        const sibling = btn.closest(".module__info-show").nextElementSibling;
+        sibling.classList.toggle("msg");
+        sibling.style.marginTop = "20px";
       });
     });
   }

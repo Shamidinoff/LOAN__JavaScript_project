@@ -20,8 +20,9 @@ export default class VideoPlayer {
 
       btn.addEventListener("click", () => {
         if (
+          !btn.closest(".module__video-item") ||
           btn.closest(".module__video-item").getAttribute("data-disabled") !==
-          "true"
+            "true"
         ) {
           this.activeBtn = btn;
 

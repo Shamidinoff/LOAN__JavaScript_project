@@ -1,13 +1,14 @@
 export default class ShowInfo {
-  constructor(trigers) {
-    this.btns = document.querySelectorAll(trigers);
+  constructor(triggers) {
+    this.btns = document.querySelectorAll(triggers);
   }
 
   init() {
     this.btns.forEach((btn) => {
       btn.addEventListener("click", () => {
-        btn.closest(".module__info-show").nextElementSibling.style.display =
-          "block";
+        const sibling = btn.closest(".module__info-show").nextElementSibling;
+        sibling.classList.toggle("msg");
+        sibling.style.marginTop = "20px";
       });
     });
   }
