@@ -8,11 +8,15 @@ export default class VideoPlayer {
 
   bindTriggers() {
     this.btns.forEach((btn, i) => {
-      const blockedElem = btn.closest(".module__video-item").nextElementSibling;
+      try {
+        const blockedElem = btn.closest(
+          ".module__video-item"
+        ).nextElementSibling;
 
-      if (i % 2 == 0) {
-        blockedElem.setAttribute("data-disabled", "true");
-      }
+        if (i % 2 == 0) {
+          blockedElem.setAttribute("data-disabled", "true");
+        }
+      } catch (e) {}
 
       btn.addEventListener("click", () => {
         if (
@@ -60,26 +64,32 @@ export default class VideoPlayer {
   }
 
   onPlayerStateChange(state) {
-    const blockedElem = this.activeBtn.closest(
-      ".module__video-item"
-    ).nextElementSibling;
-    const playBtn = this.activeBtn.querySelector("svg").cloneNode(true);
+    try {
+      const blockedElem = this.activeBtn.closest(
+        ".module__video-item"
+      ).nextElementSibling;
+      const playBtn = this.activeBtn.querySelector("svg").cloneNode(true);
 
-    if (state.data === 0) {
-      if (
-        blockedElem.querySelector(".play__circle").classList.contains("closed")
-      ) {
-        blockedElem.querySelector(".play__circle").classList.remove("closed");
-        blockedElem.querySelector("svg").remove();
-        blockedElem.querySelector(".play__circle").appendChild(playBtn);
-        blockedElem.querySelector(".play__text").textContent = "play video";
-        blockedElem.querySelector(".play__text").classList.remove("attention");
-        blockedElem.style.opacity = 1;
-        blockedElem.style.filter = "none";
+      if (state.data === 0) {
+        if (
+          blockedElem
+            .querySelector(".play__circle")
+            .classList.contains("closed")
+        ) {
+          blockedElem.querySelector(".play__circle").classList.remove("closed");
+          blockedElem.querySelector("svg").remove();
+          blockedElem.querySelector(".play__circle").appendChild(playBtn);
+          blockedElem.querySelector(".play__text").textContent = "play video";
+          blockedElem
+            .querySelector(".play__text")
+            .classList.remove("attention");
+          blockedElem.style.opacity = 1;
+          blockedElem.style.filter = "none";
 
-        blockedElem.setAttribute("data-disbled", "false");
+          blockedElem.setAttribute("data-disbled", "false");
+        }
       }
-    }
+    } catch (e) {}
   }
 
   init() {

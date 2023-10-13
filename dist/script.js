@@ -187,10 +187,12 @@ class VideoPlayer {
   }
   bindTriggers() {
     this.btns.forEach((btn, i) => {
-      const blockedElem = btn.closest(".module__video-item").nextElementSibling;
-      if (i % 2 == 0) {
-        blockedElem.setAttribute("data-disabled", "true");
-      }
+      try {
+        const blockedElem = btn.closest(".module__video-item").nextElementSibling;
+        if (i % 2 == 0) {
+          blockedElem.setAttribute("data-disabled", "true");
+        }
+      } catch (e) {}
       btn.addEventListener("click", () => {
         if (btn.closest(".module__video-item").getAttribute("data-disabled") !== "true") {
           this.activeBtn = btn;
@@ -231,20 +233,22 @@ class VideoPlayer {
     this.overlay.style.display = "flex";
   }
   onPlayerStateChange(state) {
-    const blockedElem = this.activeBtn.closest(".module__video-item").nextElementSibling;
-    const playBtn = this.activeBtn.querySelector("svg").cloneNode(true);
-    if (state.data === 0) {
-      if (blockedElem.querySelector(".play__circle").classList.contains("closed")) {
-        blockedElem.querySelector(".play__circle").classList.remove("closed");
-        blockedElem.querySelector("svg").remove();
-        blockedElem.querySelector(".play__circle").appendChild(playBtn);
-        blockedElem.querySelector(".play__text").textContent = "play video";
-        blockedElem.querySelector(".play__text").classList.remove("attention");
-        blockedElem.style.opacity = 1;
-        blockedElem.style.filter = "none";
-        blockedElem.setAttribute("data-disbled", "false");
+    try {
+      const blockedElem = this.activeBtn.closest(".module__video-item").nextElementSibling;
+      const playBtn = this.activeBtn.querySelector("svg").cloneNode(true);
+      if (state.data === 0) {
+        if (blockedElem.querySelector(".play__circle").classList.contains("closed")) {
+          blockedElem.querySelector(".play__circle").classList.remove("closed");
+          blockedElem.querySelector("svg").remove();
+          blockedElem.querySelector(".play__circle").appendChild(playBtn);
+          blockedElem.querySelector(".play__text").textContent = "play video";
+          blockedElem.querySelector(".play__text").classList.remove("attention");
+          blockedElem.style.opacity = 1;
+          blockedElem.style.filter = "none";
+          blockedElem.setAttribute("data-disbled", "false");
+        }
       }
-    }
+    } catch (e) {}
   }
   init() {
     if (this.btns.length > 0) {
