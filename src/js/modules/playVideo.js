@@ -3,6 +3,7 @@ export default class VideoPlayer {
     this.btns = document.querySelectorAll(triggers);
     this.overlay = document.querySelector(overlay);
     this.close = this.overlay.querySelector(".close");
+    this.onPlayerStateChange = this.onPlayerStateChange.bind(this);
   }
 
   bindTriggers() {
@@ -60,6 +61,10 @@ export default class VideoPlayer {
         blockedElem.querySelector(".play__circle").classList.remove("closed");
         blockedElem.querySelector("svg").remove();
         blockedElem.querySelector(".play__circle").appendChild(playBtn);
+        blockedElem.querySelector(".play__text").textContent = "play video";
+        blockedElem.querySelector(".play__text").classList.remove("attention");
+        blockedElem.style.opacity = 1;
+        blockedElem.style.filter = "none";
       }
     }
   }
