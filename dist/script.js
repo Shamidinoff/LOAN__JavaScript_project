@@ -218,11 +218,21 @@ class VideoPlayer {
       width: "100%",
       videoId: `${url}`,
       events: {
-        onReady: onPlayerReady,
-        onStateChange: onPlayerStateChange
+        onStateChange: this.onPlayerStateChange
       }
     });
     this.overlay.style.display = "flex";
+  }
+  onPlayerStateChange(state) {
+    const blockedElem = this.activeBtn.closest(".module__video-item").nextElementSibling;
+    const playBtn = this.activeBtn.querySelector("svg").cloneNode(true);
+    if (state.data === 0) {
+      if (blockedElem.querySelector(".play__circle").classList.contains("closed")) {
+        blockedElem.querySelector(".play__circle").classList.remove("closed");
+        blockedElem.querySelector("svg").remove();
+        blockedElem.querySelector(".play__circle").appendChild(playBtn);
+      }
+    }
   }
   init() {
     if (this.btns.length > 0) {
