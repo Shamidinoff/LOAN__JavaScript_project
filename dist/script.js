@@ -186,20 +186,26 @@ class VideoPlayer {
     this.onPlayerStateChange = this.onPlayerStateChange.bind(this);
   }
   bindTriggers() {
-    this.btns.forEach(btn => {
+    this.btns.forEach((btn, i) => {
+      const blockedElem = btn.closest(".module__video-item").nextElementSibling;
+      if (i % 2 == 0) {
+        blockedElem.setAttribute("data-disabled", "true");
+      }
       btn.addEventListener("click", () => {
-        this.activeBtn = btn;
-        if (document.querySelector("iframe#frame")) {
-          this.overlay.style.display = "flex";
-          if (this.path !== btn.getAttribute("data-url")) {
+        if (btn.closest(".module__video-item").getAttribute("data-disabled") !== "true") {
+          this.activeBtn = btn;
+          if (document.querySelector("iframe#frame")) {
+            this.overlay.style.display = "flex";
+            if (this.path !== btn.getAttribute("data-url")) {
+              this.path = btn.getAttribute("data-url");
+              this.player.loadVideoById({
+                videoId: this.path
+              });
+            }
+          } else {
             this.path = btn.getAttribute("data-url");
-            this.player.loadVideoById({
-              videoId: this.path
-            });
+            this.createPlayer(this.path);
           }
-        } else {
-          this.path = btn.getAttribute("data-url");
-          this.createPlayer(this.path);
         }
       });
     });
