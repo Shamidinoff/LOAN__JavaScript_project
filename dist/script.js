@@ -656,6 +656,8 @@ window.addEventListener("DOMContentLoaded", () => {
   new _modules_showInfo__WEBPACK_IMPORTED_MODULE_5__["default"](".plus__content").init();
   new _modules_download__WEBPACK_IMPORTED_MODULE_6__["default"](".download").init();
 });
+
+// gulp build-prod-js --- command for the deploy
 }();
 /******/ })()
 ;

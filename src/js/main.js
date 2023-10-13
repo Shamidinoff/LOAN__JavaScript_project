@@ -53,3 +53,5 @@ window.addEventListener("DOMContentLoaded", () => {
 
   new Download(".download").init();
 });
+
+// gulp build-prod-js --- command for the deploy
